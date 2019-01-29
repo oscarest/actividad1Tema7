@@ -12,7 +12,6 @@ public class DB_SQLite extends SQLiteOpenHelper
     private static final String SQL_DELETE_ENTRIES = "DROP TABLE PRODUCTO";
     public DB_SQLite(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
     }
 
     @Override
