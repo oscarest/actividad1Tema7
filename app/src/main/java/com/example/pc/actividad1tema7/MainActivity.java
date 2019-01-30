@@ -21,25 +21,25 @@ public class MainActivity extends AppCompatActivity {
         conn.close();
     }
 
-    public void onClick2(View view)
+    public void insertarProducto(View view)
     {
 
     }
 
-    public void onClick4(View view)
+    public void eliminarProducto(View view)
     {
 
     }
-    public void onClick1(View view)
-    {
-
-    }
-
-    public void onClick3(View view)
+    public void modificarProducto(View view)
     {
 
     }
 
-    public void onClick5(View view) {
+    public void buscarProducto(View view)
+    {
+
+    }
+
+    public void listarProducto(View view) {
     }
 }
