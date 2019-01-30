@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText txtNombre;
@@ -38,7 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void insertarProducto(View view)
     {
+    String strNombre = txtNombre.getText().toString();
+    String strCantidad = txtCantidad.getText().toString();
+    String strSeccion = lstSeccion.getSelectedItem().toString();
+    if(strNombre.equals("") || strCantidad.equals(""))
+    {
+        mostrarMensaje("Todos los campos son obligatorios");
 
+    }
+    else
+    {
+
+    }
     }
 
     public void eliminarProducto(View view)
@@ -56,5 +68,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void listarProducto(View view) {
+    }
+    private void mostrarMensaje(String msg)
+    {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT);
     }
 }
