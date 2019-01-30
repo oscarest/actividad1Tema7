@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         txtNombre = findViewById(R.id.editText);
         txtCantidad = findViewById(R.id.editText2);
         lstSeccion = findViewById(R.id.spinner);
-
         String[] secciones = {"Monitor", "DiscoDuro", "Memoria", "Teclado", "Ratón", "Impresora"};
         lstSeccion.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, secciones));
        /* DB_SQLite db = new DB_SQLite(this);
@@ -105,8 +104,36 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void listarProducto(View view)
+    public void listarProductos(View view)
     {
+        EditText resultados = findViewById(R.id.editText3);
+        resultados.setText("");
+        String sql = "SELECT _id, nombre, cantidad, seccion FROM PRODUCTO ORDER BY nombre ASC";
+        DB_SQLite db = new DB_SQLite(this);
+        SQLiteDatabase conn = db.getReadableDatabase();
+        Cursor cursor = conn.rawQuery(sql,null);
+        if(cursor.getCount()==0)
+        {
+            mostrarMensaje("La base de datos está vacía");
+        }
+        else
+        {
+            cursor.moveToFirst();
+            do {
+                Long dataIdProducto = cursor.getLong(cursor.getColumnIndex("_id"));
+                String dataNombreProducto =cursor.getString(cursor.getColumnIndex("nombre"));
+                Integer dataCantidadProducto =cursor.getInt(cursor.getColumnIndex("cantidad"));
+                String dataSeccionProducto =cursor.getString(cursor.getColumnIndex("seccion"));
+                String msg="El id es" + dataIdProducto + ", el nombre es " + dataNombreProducto + ", la cantidad es " + dataCantidadProducto + " y la seccion es " + dataSeccionProducto;
+                resultados.append(msg + "\n");
+            }
+            while(cursor.moveToNext());
+            {
+
+            }
+            cursor.close();
+            conn.close();
+        }
 
     }
     private void mostrarMensaje(String msg)
