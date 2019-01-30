@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
+            mostrarMensaje("dentro");
             String sql1 = "SELECT _id, nombre, cantidad, seccion FROM PRODUCTO WHERE nombre LIKE '" + strNombre + "'";
             DB_SQLite db = new DB_SQLite(this);
             SQLiteDatabase conn = db.getReadableDatabase();
@@ -97,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                 Integer dataCantidadProducto =cursor.getInt(cursor.getColumnIndex("cantidad"));
                 String dataSeccionProducto =cursor.getString(cursor.getColumnIndex("seccion"));
                 mostrarMensaje("El id es" + dataIdProducto + ", el nombre es " + dataNombreProducto + ", la cantidad es " + dataCantidadProducto + " y la seccion es " + dataSeccionProducto);
-
             }
             cursor.close();
             conn.close();
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void mostrarMensaje(String msg)
     {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
     private void limpiarCuadros()
     {
