@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         {
             mostrarMensaje("La base de datos está vacía");
         }
+
         else
         {
             cursor.moveToFirst();
