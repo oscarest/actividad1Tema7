@@ -83,7 +83,23 @@ public class MainActivity extends AppCompatActivity {
     }
     public void modificarProducto(View view)
     {
+        strNombre = txtNombre.getText().toString();
+        strCantidad = txtCantidad.getText().toString();
+        strSeccion = lstSeccion.getSelectedItem().toString();
 
+        if (strCantidad.equals("")) {
+            mostrarMensaje("La cantidad es obligatoria.");
+        } else {
+            String sql = "UPDATE PRODUCTO SET cantidad=" + Integer.parseInt(strCantidad) + ", seccion='" + strSeccion + "' WHERE nombre LIKE '" + strNombre + "'";
+
+            DB_SQLite db = new DB_SQLite(this);
+            SQLiteDatabase conn = db.getWritableDatabase();
+            conn.execSQL(sql);
+            conn.close();
+
+            mostrarMensaje("El producto " + strNombre + " ha sido modificado.");
+            limpiarCuadros();
+        }
     }
     public void buscarProducto(View view)
     {
