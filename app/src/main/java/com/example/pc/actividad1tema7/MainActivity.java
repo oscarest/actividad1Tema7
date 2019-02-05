@@ -66,15 +66,18 @@ public class MainActivity extends AppCompatActivity {
     public void eliminarProducto(View view)
     {
         strNombre = txtNombre.getText().toString();
-        if (strNombre.equals("")) {
-            mostrarMensaje("Debe indicar el producto a eliminar.");
-        } else {
-            String sql = "DELETE FROM PRODUCTO WHERE nombre LIKE '" + strNombre + "'";
+        if(strNombre.equals(""))
+        {
+            mostrarMensaje("Todos los campos son obligatorios");
+        }
+        else
+        {
+            String sql = "DELETE FROM PRODUCTO WHERE nombre='"+strNombre+"'";
             DB_SQLite db = new DB_SQLite(this);
-            SQLiteDatabase conn = db.getWritableDatabase();
+            SQLiteDatabase conn = db.getReadableDatabase();
             conn.execSQL(sql);
             conn.close();
-            mostrarMensaje("El producto " + strNombre + " ha sido eliminado.");
+            mostrarMensaje("Se ha borrado correctamente la fila donde el nombre es " + strNombre );
             limpiarCuadros();
         }
     }
